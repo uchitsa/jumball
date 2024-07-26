@@ -17,3 +17,23 @@ function drawBall() {
     ctx.fill();
     ctx.closePath();
 }
+
+function update() {
+    ctx.clearRect(0,0,cnvs.width,cnvs.height);
+    drawBall();
+
+    ball.x += ball.speedX;
+    ball.y += ball.speedY;
+
+    if (ball.x + ball.radius > cnvs.width || ball.x - ball.radius < 0) {
+        ball.speedX = - ball.speedX;
+    }
+ 
+    if (ball.y + ball.radius > cnvs.height || ball.y - ball.radius < 0) {
+        ball.speedY = - ball.speedY;
+    }
+       
+    requestAnimationFrame(update);
+}
+
+update();
